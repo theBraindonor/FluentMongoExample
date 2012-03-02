@@ -1,0 +1,31 @@
+﻿@model IQueryable<Record>
+
+<h2>List of Records</h2>
+
+<table cellspacing="3" cellpadding="3">
+<tr>
+    <th>_id</th>
+    <th>SomeRandomText</th>
+    <th>RecordDate</th>
+</tr>
+@foreach (Record record in Model)
+{
+    <tr>
+        <td>@record._id</td>
+        <td>@record.SomeRandomText</td>
+        <td>@record.RecordDate</td>
+        <td>
+            @Html.ActionLink("Delete", "DeleteRecord", new { record_id = record._id })
+        </td>
+    </tr>
+}
+</table>
+
+<h2>Insert New Record</h2>
+
+@using (Html.BeginForm("CreateRecord", "Home"))
+{
+    <label>Some Random Text:</label>
+    @Html.TextBox("SomeRandomText")
+    <input type="submit" value="Create New Record" />
+}
